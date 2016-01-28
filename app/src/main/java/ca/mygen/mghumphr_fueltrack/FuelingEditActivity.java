@@ -19,7 +19,7 @@ public class FuelingEditActivity extends AbstractFuelUpActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.edit_toolbar);
         setSupportActionBar(toolbar);
 
-
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +28,7 @@ public class FuelingEditActivity extends AbstractFuelUpActivity {
                         .setAction("Action", null).show();
             }
         });
+        */
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
@@ -55,7 +56,10 @@ public class FuelingEditActivity extends AbstractFuelUpActivity {
 
 
     }
-
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
