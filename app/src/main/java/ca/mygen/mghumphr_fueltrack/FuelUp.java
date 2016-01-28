@@ -9,6 +9,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -92,6 +94,10 @@ public class FuelUp {
         public Date getDate() {
             return this.date;
         }
+        public String getShortDate() {
+            SimpleDateFormat format = new SimpleDateFormat("MMM d");
+            return format.format(this.date);
+        }
 
         public void setDate(Date date) {
             this.date = date;
@@ -137,10 +143,17 @@ public class FuelUp {
             this.unitCost = cost;
         }
 
-        public Number getTotalCost() {
-            return this.unitCost.doubleValue() * this.amount.doubleValue();
+        public String getTotalCost() {
+            Number cost = this.unitCost.doubleValue() * this.amount.doubleValue();
+            NumberFormat format = NumberFormat.getInstance();
+            format.setMaximumFractionDigits(2);
+            return format.format(cost);
         }
 
+        public String getListDetails(){
+            return "$" + this.getTotalCost() + " @ " + this.getStation() + " (" + this.getGrade() + ")\n"
+                + "$" + this.getUnitCost() + "/L " + this.getAmount() + "L ";
+        }
 
         @Override
         public int compareTo(Object another){

@@ -9,10 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Date;
-
-import ca.mygen.mghumphr_fueltrack.dummy.DummyContent;
-
 /**
  * A fragment representing a single Fueling detail screen.
  * This fragment is either contained in a {@link FuelingListActivity}
