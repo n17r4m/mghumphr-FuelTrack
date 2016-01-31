@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -45,7 +46,7 @@ public class FuelingDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.getDate().toString());
+                appBarLayout.setTitle(mItem.getShortDate());
             }
         }
     }
@@ -57,9 +58,43 @@ public class FuelingDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.fueling_detail)).setText(mItem.getTotalCost().toString());
+            ((TextView) rootView.findViewById(R.id.date)).setText(mItem.getShortDate());
+            ((TextView) rootView.findViewById(R.id.station)).setText(mItem.getStation());
+            ((TextView) rootView.findViewById(R.id.odometer)).setText(mItem.getOdometer());
+            ((TextView) rootView.findViewById(R.id.grade)).setText(mItem.getGrade());
+            ((TextView) rootView.findViewById(R.id.amount)).setText(mItem.getAmount() + "L");
+            ((TextView) rootView.findViewById(R.id.unitCost)).setText("$" + mItem.getUnitCost() + "/L");
+            ((TextView) rootView.findViewById(R.id.cost)).setText("$" + mItem.getTotalCost() + "");
+
         }
 
+        wireUp(rootView);
+
         return rootView;
+    }
+
+    private void wireUp(View rootView){
+        final Button editButton = (Button) rootView.findViewById(R.id.editButton);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FuelingEditFragment fragment = new FuelingEditFragment();
+
+                Bundle arguments = new Bundle();
+                arguments.putString(ARG_ITEM_ID, mItem.getId());
+                fragment.setArguments(arguments);
+
+                if (getActivity() instanceof FuelingEditActivity) {
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fueling_edit_container, fragment)
+                            .commit();
+                } else {
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fueling_detail_container, fragment)
+                            .commit();
+                }
+            }
+        });
     }
 }

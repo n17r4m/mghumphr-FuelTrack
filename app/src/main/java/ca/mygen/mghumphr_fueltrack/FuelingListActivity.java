@@ -86,7 +86,7 @@ public class FuelingListActivity extends AbstractFuelUpActivity {
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(FuelingDetailFragment.ARG_ITEM_ID, holder.mItem.getDate().toString());
+                        arguments.putString(FuelingDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
                         FuelingDetailFragment fragment = new FuelingDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -95,7 +95,7 @@ public class FuelingListActivity extends AbstractFuelUpActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, FuelingDetailActivity.class);
-                        intent.putExtra(FuelingDetailFragment.ARG_ITEM_ID, holder.mItem.getDate().toString());
+                        intent.putExtra(FuelingDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
 
                         context.startActivity(intent);
                     }

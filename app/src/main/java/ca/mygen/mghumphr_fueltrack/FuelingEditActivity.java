@@ -56,10 +56,7 @@ public class FuelingEditActivity extends AbstractFuelUpActivity {
 
 
     }
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -27,4 +27,101 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Station"
+        android:id="@+id/editStationLabel"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/editDate"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editStation"
+        android:layout_below="@+id/editDate"
+        android:layout_alignEnd="@+id/editDate"
+        android:layout_alignStart="@+id/editDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Odometer"
+        android:id="@+id/editOdometerLabel"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/editStation"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editOdometer"
+        android:inputType="number"
+        android:layout_below="@+id/editStation"
+        android:layout_alignEnd="@+id/editStation"
+        android:layout_alignStart="@+id/editStation" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        android:id="@+id/editGradeLabel"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/editOdometer"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editGrade"
+        android:layout_below="@+id/editOdometer"
+        android:layout_alignEnd="@+id/editOdometer"
+        android:layout_alignStart="@+id/editOdometer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liters"
+        android:id="@+id/editAmountLabel"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/editGrade"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editAmount"
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/editGrade"
+        android:layout_alignEnd="@+id/editGrade"
+        android:layout_alignStart="@+id/editGrade" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost ($/L)"
+        android:id="@+id/editUnitCostLabel"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/editAmount"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUnitCost"
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/editAmount"
+        android:layout_alignEnd="@+id/editAmount"
+        android:layout_alignStart="@+id/editAmount" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/doneButton"
+        android:layout_below="@+id/editUnitCost"
+        android:layout_alignEnd="@+id/editUnitCost"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="50dp" />
 </RelativeLayout>

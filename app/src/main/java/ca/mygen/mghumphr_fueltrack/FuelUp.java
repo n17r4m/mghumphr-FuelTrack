@@ -26,9 +26,9 @@ public class FuelUp {
 
     public static List<Fueling> LIST = new ArrayList<Fueling>();
     public static Map<String, Fueling> MAP = new HashMap<String, Fueling>();
+    public static Fueling current;
 
     private static final String LIST_KEY = "json_list";
-    private static final String MAP_KEY = "json_map";
 
     public static Fueling create(){
         return new Fueling();
@@ -59,7 +59,6 @@ public class FuelUp {
         ctx.getSharedPreferences("appData", Context.MODE_PRIVATE)
             .edit()
             .putString(FuelUp.LIST_KEY, gson.toJson(FuelUp.LIST))
-            .putString(FuelUp.MAP_KEY, gson.toJson(FuelUp.MAP))
             .apply();
     }
 
@@ -69,12 +68,15 @@ public class FuelUp {
         Type mapType = new TypeToken<Map<String, Fueling>>() {}.getType();
         SharedPreferences prefs = ctx.getSharedPreferences("appData", Context.MODE_PRIVATE);
         FuelUp.LIST = gson.fromJson(prefs.getString(FuelUp.LIST_KEY, "[]"), listType);
-        FuelUp.MAP = gson.fromJson(prefs.getString(FuelUp.MAP_KEY, "{}"), mapType);
+        Collections.sort(FuelUp.LIST);
+        FuelUp.MAP.clear();
+        for (Fueling fueling : FuelUp.LIST) {
+            FuelUp.MAP.put(fueling.getId(), fueling);
+        }
     }
 
     public static class Fueling implements Comparable {
 
-        private String id;
         private Date date;
         private String station;
         private Number odometer;
@@ -91,16 +93,22 @@ public class FuelUp {
             this.unitCost = 0;
         }
 
+        public String getId(){
+            return this.getDate().toString();
+        }
+
         public Date getDate() {
             return this.date;
         }
         public String getShortDate() {
-            SimpleDateFormat format = new SimpleDateFormat("MMM d");
+            SimpleDateFormat format = new SimpleDateFormat("MMM d yy");
             return format.format(this.date);
         }
 
         public void setDate(Date date) {
+            FuelUp.MAP.remove(this.getId());
             this.date = date;
+            FuelUp.MAP.put(this.getId(), this);
         }
 
         public String getStation() {
@@ -111,13 +119,12 @@ public class FuelUp {
             this.station = station;
         }
 
-        public Number getOdometer() {
-            return this.odometer;
+        public String getOdometer() {
+            NumberFormat format = new DecimalFormat("0");
+            return format.format(Math.ceil(this.odometer.doubleValue()));
         }
 
-        public void setOdometer(Number odometer) {
-            this.odometer = odometer;
-        }
+        public void setOdometer(Number odometer) { this.odometer = odometer; }
 
         public String getGrade() {
             return this.grade;
@@ -127,16 +134,18 @@ public class FuelUp {
             this.grade = grade;
         }
 
-        public Number getAmount() {
-            return this.amount;
+        public String getAmount() {
+            NumberFormat format = new DecimalFormat("0.000");
+            return format.format(this.amount);
         }
 
         public void setAmount(Number amount) {
             this.amount = amount;
         }
 
-        public Number getUnitCost() {
-            return this.unitCost;
+        public String getUnitCost() {
+            NumberFormat format = new DecimalFormat("0.000");
+            return format.format(this.unitCost);
         }
 
         public void setUnitCost(Number cost) {
@@ -145,22 +154,19 @@ public class FuelUp {
 
         public String getTotalCost() {
             Number cost = this.unitCost.doubleValue() * this.amount.doubleValue();
-            NumberFormat format = NumberFormat.getInstance();
-            format.setMaximumFractionDigits(2);
+            NumberFormat format = new DecimalFormat("0.00");
             return format.format(cost);
         }
 
         public String getListDetails(){
-            return "$" + this.getTotalCost() + " @ " + this.getStation() + " (" + this.getGrade() + ")\n"
+            return "$" + this.getTotalCost() + " @ " + this.getStation() + "\n"
+                + this.getGrade() + "\n"
                 + "$" + this.getUnitCost() + "/L " + this.getAmount() + "L ";
         }
 
         @Override
         public int compareTo(Object another){
-            return -1;
-        }
-        public int compareTo(Fueling another) {
-            return this.getDate().compareTo(another.getDate());
+            return ((Fueling)another).getDate().compareTo(this.getDate());
         }
 
         @Override

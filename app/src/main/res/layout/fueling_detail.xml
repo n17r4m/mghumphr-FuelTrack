@@ -1,4 +1,4 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fueling_detail"
     style="?android:attr/textAppearanceLarge"
@@ -6,4 +6,137 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:textIsSelectable="true"
-    tools:context="ca.mygen.mghumphr_fueltrack.FuelingDetailFragment" />
+    tools:context="ca.mygen.mghumphr_fueltrack.FuelingDetailFragment" >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateLabel"
+        android:layout_alignTop="@+id/date"
+        android:layout_alignParentStart="true"
+        android:text="Date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/textAppearanceLarge"
+        android:ems="10"
+        android:id="@+id/date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Station"
+        android:id="@+id/stationLabel"
+        android:layout_below="@+id/date"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/station"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/date"
+        android:layout_alignEnd="@+id/date"
+        android:layout_alignStart="@+id/date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Odometer"
+        android:id="@+id/editOdometerLabel"
+        android:layout_below="@+id/station"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/odometer"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/station"
+        android:layout_alignEnd="@+id/station"
+        android:layout_alignStart="@+id/station" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        android:id="@+id/gradeLabel"
+        android:layout_below="@+id/odometer"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/grade"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/odometer"
+        android:layout_alignEnd="@+id/odometer"
+        android:layout_alignStart="@+id/odometer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liters"
+        android:id="@+id/amountLabel"
+        android:layout_below="@+id/grade"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amount"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/grade"
+        android:layout_alignEnd="@+id/grade"
+        android:layout_alignStart="@+id/grade" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost"
+        android:id="@+id/unitCostLabel"
+        android:layout_below="@+id/amount"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitCost"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/amount"
+        android:layout_alignEnd="@+id/amount"
+        android:layout_alignStart="@+id/amount" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:id="@+id/costLabel"
+        android:layout_below="@+id/unitCost"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cost"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/unitCost"
+        android:layout_alignEnd="@+id/unitCost"
+        android:layout_alignStart="@+id/unitCost" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/editButton"
+        android:layout_below="@+id/cost"
+        android:layout_alignEnd="@+id/cost"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="50dp" />
+
+</RelativeLayout>
