@@ -53,6 +53,14 @@ public class FuelUp {
         FuelUp.LIST.remove(fueling);
     }
 
+    public static String total(){
+        Double total = 0.0;
+        for (Fueling fueling : FuelUp.LIST) {
+            total += Double.valueOf(fueling.getTotalCost());
+        }
+        NumberFormat format = new DecimalFormat("0.00");
+        return format.format(total);
+    }
 
     public static void save(Context ctx){
         Gson gson = new Gson();

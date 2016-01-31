@@ -40,6 +40,9 @@ public class FuelingListActivity extends AbstractFuelUpActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
+        TextView total = (TextView) findViewById(R.id.total);
+        total.setText("$" + FuelUp.total());
+
         View recyclerView = findViewById(R.id.fueling_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
