@@ -161,6 +161,7 @@ public class FuelingEditFragment extends Fragment {
                 }
                 FuelUp.save(getContext());
 
+
                 FuelingDetailFragment fragment = new FuelingDetailFragment();
 
                 Bundle arguments = new Bundle();
@@ -223,10 +224,11 @@ public class FuelingEditFragment extends Fragment {
             date.setHours(now.getHours());
             date.setMinutes(now.getMinutes());
             date.setSeconds(now.getSeconds());
-            mItem.setDate(now);
+            mItem.setDate(date);
 
             EditText editDate = (EditText) getActivity().findViewById(R.id.editDate);
             editDate.setText(mItem.getShortDate());
+
         }
     }
 
