@@ -40,14 +40,6 @@ public class FuelUp {
         FuelUp.MAP.put(fueling.getDate().toString(), fueling);
     }
 
-    public static void remove(String date){
-        Fueling fueling = FuelUp.MAP.get(date);
-        if(fueling != null){
-            FuelUp.MAP.remove(date);
-            FuelUp.LIST.remove(fueling);
-        }
-    }
-
     public static void remove(Fueling fueling){
         FuelUp.MAP.remove(fueling.getDate());
         FuelUp.LIST.remove(fueling);
@@ -129,7 +121,7 @@ public class FuelUp {
 
         public String getOdometer() {
             NumberFormat format = new DecimalFormat("0");
-            return format.format(Math.ceil(this.odometer.doubleValue()));
+            return format.format(Math.round(this.odometer.doubleValue()));
         }
 
         public void setOdometer(Number odometer) { this.odometer = odometer; }
@@ -179,7 +171,7 @@ public class FuelUp {
 
         @Override
         public String toString(){
-            return this.getDate().toString();
+            return this.getId();
         }
     }
 }
