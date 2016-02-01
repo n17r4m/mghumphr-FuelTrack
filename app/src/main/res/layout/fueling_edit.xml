@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editOdometer"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:layout_below="@+id/editStation"
         android:layout_alignEnd="@+id/editStation"
         android:layout_alignStart="@+id/editStation" />
